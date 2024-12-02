@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('GIt check') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT_CRED', url: 'https://github.com/Abhi-17-07/Jenkins-CI-CD-step-by-step.git']])
+                checkout GITSCM(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT_CRED', url: 'https://github.com/Abhi-17-07/Jenkins-CI-CD-step-by-step.git']])
             }
         }
         stage('UNIT Testing') {
@@ -25,7 +25,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                deploy adapters: [tomcat11(credentialsId: 'tomcat1', path: '', url: 'http://35.179.127.79:8082')], contextPath: '01-maven-web-app.war', war: '**/*.war'
+                deploy adapters: [tomcat11(credentialsId: 'tomca', path: '', url: 'http://35.179.127.79:8082')], contextPath: '01-maven-web-app.war', war: '**/*.war'
             }
         }
     }
